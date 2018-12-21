@@ -2,8 +2,8 @@ import { RobotMissions } from './robot-missions.enum';
 import { GuardMission } from './guard-mission';
 import { PatrolMission } from './patrol-mission';
 import { QuickScanMission } from './quick-scan-mission';
-import { Robot } from '../interfaces/robot.interface';
 import { IdleMission } from './idle-mission';
+import { RobotDocument } from '../schemas/robot.schema';
 
 class MissionFactory {
     /** Mission Factory
@@ -12,7 +12,7 @@ class MissionFactory {
      * @param missions
      * @param robot
      */
-    getMission(missions: RobotMissions, robot: Robot) {
+    getMission(missions: RobotMissions, robot: RobotDocument) {
         switch (missions) {
             case RobotMissions.GUARD:
                 return new GuardMission(robot);
