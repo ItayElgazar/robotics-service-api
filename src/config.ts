@@ -4,5 +4,6 @@ export const appConfig = {
     name: 'roboticsDB',
     url: 'localhost',
   },
-  minutesBetweenMissions: 10,
+  minutesBetweenSameMission: 10,
+  missionDuration: 1, // in minutes
 };
