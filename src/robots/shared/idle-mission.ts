@@ -1,10 +1,10 @@
 import { RobotMission } from './robot-mission';
-import { Robot } from '../interfaces/robot.interface';
 import { RobotMissions } from './robot-missions.enum';
+import { Robot, RobotDocument } from '../schemas/robot.schema';
 
 export class IdleMission extends RobotMission {
 
-    constructor(robot: Robot) {
+    constructor(robot: RobotDocument) {
         super(robot);
     }
 

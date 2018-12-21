@@ -1,15 +1,20 @@
 import { RobotMission } from './robot-mission';
 import { RobotMissions } from './robot-missions.enum';
-import { Robot } from '../interfaces/robot.interface';
+import { RobotDocument } from '../schemas/robot.schema';
+import { Logger } from '@nestjs/common';
+import { appConfig } from '../../config';
 
 export class GuardMission extends RobotMission {
 
-    constructor(robot: Robot) {
+    constructor(robot: RobotDocument) {
         super(robot);
     }
 
     start() {
-        this.robot.robotMission = RobotMissions.GUARD;
+        setTimeout(() => {
+            Logger.log(`Mission is finished for robot: ${this.robot.id}`, 'Guard');
+            this.stop();
+        }, appConfig.missionDuration * 60000);
     }
 
 }
