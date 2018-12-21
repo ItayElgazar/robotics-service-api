@@ -16,10 +16,12 @@ export class RobotsService implements OnModuleInit {
 
     async onModuleInit(): Promise<void> {
         Logger.log('Initialized', 'RobotService');
+        // If the system shut down for some reason, taking care of the last missions and executing them again
         const isPreviousMissionsExecuted = await this.executeLastMissions().catch(err => this.handleErrors(err));
         if (isPreviousMissionsExecuted) {
             Logger.log('All previous missions executed!', 'RobotService');
         }
+        this.addMockRobot();
     }
 
     private robots: RobotDocument[] = [];
@@ -86,5 +88,14 @@ export class RobotsService implements OnModuleInit {
 
     private handleErrors(error: MongoError) {
         Logger.error(error.errmsg, 'MongoError');
+    }
+
+    // for test purposes, adding robot if there's not robots on db
+    private async addMockRobot() {
+        const robots = await this.findAll();
+        if (robots.length === 0) {
+            await this.createRobot({ name: 'Test Robot' });
+            Logger.log('Test robot created', 'RobotServices');
+        }
     }
 }

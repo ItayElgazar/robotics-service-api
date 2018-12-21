@@ -1,6 +1,6 @@
 import { RobotMission } from './robot-mission';
 import { RobotMissions } from './robot-missions.enum';
-import { Robot, RobotDocument } from '../schemas/robot.schema';
+import { RobotDocument } from '../schemas/robot.schema';
 
 export class IdleMission extends RobotMission {
 

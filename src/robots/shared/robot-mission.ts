@@ -15,22 +15,20 @@ export abstract class RobotMission {
 
     protected async stop(): Promise<void> {
         this.robot.missions = missionsService.removeMissionFromQueue(this.robot.missions);
-        const nextJob = missionsService.getNextMission(this.robot.missions);
-        if (!this.robot.isMissionExecutable(nextJob)) {
+        const nextMission = missionsService.getNextMission(this.robot.missions);
+        if (!this.robot.isMissionExecutable(nextMission)) {
             Logger.log(`Mission is not executable for robot ${this.robot.id} +
             - you have to wait 10 minutes before executing the same mission`, 'RobotMissions');
             this.robot.missions = missionsService.removeMissionFromQueue(this.robot.missions);
-        }
-        await this.robot.save();
-        if (missionsService.getNextMission(this.robot.missions)) {
-            Logger.log(`Starting new mission: ${nextJob} for robot: ${this.robot.id}`, 'RobotMissions');
-            missionFactory.getMission(nextJob, this.robot).start();
+        } else if (missionsService.getNextMission(this.robot.missions)) {
+            Logger.log(`Starting new mission: ${nextMission} for robot: ${this.robot.id}`, 'RobotMissions');
+            missionFactory.getMission(nextMission, this.robot).start();
             this.robot.lastMissionExecuted = new Date();
-            await this.robot.save();
+            this.robot.robotMission = nextMission;
         } else {
             Logger.log('All missions done', 'RobotMissions');
             this.robot.robotMission = RobotMissions.IDLE;
-            this.robot.save();
         }
+        this.robot.save();
     }
 }
