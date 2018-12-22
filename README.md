@@ -19,5 +19,4 @@ clear code should be readable :)
    
 ##### Whats left to be done:
 - Testing
-- Fixing the docker image
 - Thinking about edge cases
