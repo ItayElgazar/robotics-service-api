@@ -8,6 +8,7 @@ import { RobotDocument } from '../schemas/robot.schema';
 import { Robot } from '../robot';
 import { missionsService } from './missions.service';
 import { MongoError } from 'mongodb';
+import { appConfig } from '../../config';
 
 @Injectable()
 export class RobotsService implements OnModuleInit {

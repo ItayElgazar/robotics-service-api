@@ -1,19 +1,14 @@
-FROM node:8
+FROM node:carbon
 
-# Create app directory
 WORKDIR /usr/src/app
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
 COPY package*.json ./
 
 RUN npm install
 
-
 COPY . .
 
-ENV NAME docker
+EXPOSE 3000
 
-EXPOSE 80
-CMD [ "npm", "run", "start:dev"]
+ENV mongo_url="mongo"
+CMD [ "npm", "start"]
