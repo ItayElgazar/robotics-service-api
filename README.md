@@ -13,7 +13,7 @@ clear code should be readable :)
 - dependencies:
   - You need to have MongoDB service runing on your machine
   
-#### Runing through docker:
+#### Running through docker:
     docker build -t robotics-api-service
     docker-compose up
    
