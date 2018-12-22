@@ -10,7 +10,9 @@ clear code should be readable :)
 #### How to run:
 - run ```npm install```
 - and then ```npm run start``` or ```npm run start:dev``` (for nodemon)
-
+- dependencies:
+  - You need to have MongoDB service runing on your machine
+  
 ##### Whats left to be done:
 - Testing
 - Fixing the docker image
